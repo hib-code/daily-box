@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Daily Box – Box Surprise VIP</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;800&family=DM+Sans:wght@400;500;700&display=swap">
+<style>
+:root{--bg:#fbf7fb;--card:#fff;--ink:#2a1238;--mute:#6d5a78;--line:#e7dbee;--gold:#c8a24a;--pink:#f4c6d7;--plum:#2a1238;--on-plum:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#150a1c;--card:#201029;--ink:#f6eefa;--mute:#b9a6c6;--line:#3a2347;--pink:#5a2b45;--plum:#c8a24a;--on-plum:#1a0c22}}
+*{box-sizing:inherit}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--card);z-index:40}
+nav.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--card);border-bottom:1px solid var(--line)}
+nav.top .wrap{display:flex;align-items:center;gap:18px;height:58px}
+.logo{font:800 1.25rem 'Fraunces',Georgia,serif;white-space:nowrap;color:var(--ink);text-decoration:none}
+.links{display:flex;gap:18px;overflow-x:auto;flex:1;scrollbar-width:none}
+.links a{color:var(--ink);text-decoration:none;font-weight:500;white-space:nowrap;padding:6px 2px}
+.links a:hover{color:var(--gold)}
+.cart{background:var(--plum);color:var(--on-plum);border-radius:999px;padding:8px 14px;font-weight:700;font-size:.9rem;text-decoration:none;white-space:nowrap}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 'DM Sans',system-ui,sans-serif}
+h1,h2,h3{font-family:'Fraunces',Georgia,serif;line-height:1.1;margin:0}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px}
+header.hero{background:radial-gradient(circle at 78% 35%,#74307f 0,#2a1238 60%);color:#fff;padding:56px 0 64px;position:relative;overflow:hidden}
+.hero h1{font-size:clamp(2.4rem,8vw,4.4rem);font-weight:800;max-width:11ch}
+.hero p{max-width:46ch;opacity:.85;margin:18px 0 28px;font-size:1.1rem}
+.hero .wrap{position:relative;z-index:1}
+.art{position:absolute;right:max(2vw,10px);top:50%;transform:translateY(-50%);width:min(38vw,360px);animation:float 5s ease-in-out infinite;filter:drop-shadow(0 24px 30px rgba(0,0,0,.35))}
+@keyframes float{50%{transform:translateY(calc(-50% - 12px))}}
+@media(max-width:700px){.art{width:140px;top:auto;bottom:10px;transform:none;opacity:.55;animation:none}}
+@media(prefers-reduced-motion:reduce){.art{animation:none}}
+.strip{background:var(--card);border-bottom:1px solid var(--line)}
+.strip .wrap{display:flex;flex-wrap:wrap;gap:8px 30px;justify-content:center;padding:14px 20px;font-weight:500;font-size:.95rem}
+.pic{height:150px;border-radius:12px;display:grid;place-items:center;font-size:3.8rem;background:var(--g);overflow:hidden;margin:-6px -6px 8px}
+.pic img{width:100%;height:100%;object-fit:cover}
+.pic span{filter:drop-shadow(0 10px 10px rgba(0,0,0,.25))}
+.prod:hover .pic span{transform:scale(1.08) rotate(-4deg)}
+.pic span{transition:transform .2s}
+.ribbon{position:absolute;right:-30px;top:0;bottom:0;width:90px;background:var(--gold);opacity:.9;transform:skewX(-8deg)}
+.ribbon::after{content:"";position:absolute;left:-400px;right:-400px;top:62%;height:70px;background:var(--gold);transform:skewX(8deg)}
+.btn{display:inline-block;border:0;border-radius:999px;padding:14px 26px;font:700 1rem 'DM Sans',sans-serif;cursor:pointer;background:var(--gold);color:#2a1238;text-decoration:none}
+.btn.wa{background:#25a244;color:#fff;width:100%;font-size:1.1rem;padding:16px}
+.btn:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,.prod:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+section{padding:48px 0 8px}
+section h2{font-size:clamp(1.6rem,4vw,2.2rem);margin-bottom:6px}
+.sub{color:var(--mute);margin:0 0 22px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
+.prod{background:var(--card);border:2px solid var(--line);border-radius:18px;padding:18px;text-align:left;cursor:pointer;font:inherit;color:inherit;display:flex;flex-direction:column;gap:6px;transition:border-color .15s,transform .15s}
+.prod:hover{border-color:var(--gold)}
+.prod[aria-pressed="true"]{border-color:var(--gold);background:var(--pink);transform:translateY(-3px)}
+.prod .em{font-size:2.4rem}
+.prod b{font-size:1.05rem}
+.prod small{color:var(--mute)}
+.prod[aria-pressed="true"] small{color:var(--ink)}
+.price{font-weight:700;margin-top:auto}
+.surprise{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:16px}
+.sbox{border:2px dashed var(--gold);border-radius:18px;padding:18px;background:var(--card)}
+button.sbox{font:inherit;color:inherit;text-align:left;cursor:pointer;width:100%;display:block;transition:transform .15s}
+button.sbox:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.sbox[aria-pressed="true"]{border-style:solid;background:var(--pink);transform:translateY(-3px)}
+.sbox[aria-pressed="true"] span{color:var(--ink)}
+.sbox .em{font-size:2rem}
+.sbox b{display:block;margin:4px 0}
+.sbox span{color:var(--mute);font-size:.95rem}
+.sbox[aria-pressed="true"] .tag{display:block}
+.tag{display:none;width:max-content;margin-top:12px;background:var(--gold);color:#2a1238;border-radius:999px;padding:6px 16px;font-weight:700;font-size:1.05rem}
+.form{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px;display:grid;gap:14px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:560px){.row{grid-template-columns:1fr}}
+label{display:grid;gap:6px;font-weight:500;font-size:.95rem}
+input,select,textarea{font:inherit;color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;width:100%}
+textarea{min-height:110px;resize:vertical}
+.link{background:none;border:0;color:var(--ink);text-decoration:underline;cursor:pointer;font:inherit;justify-self:start;padding:0}
+.recap{background:var(--plum);color:var(--on-plum);border-radius:20px;padding:22px;margin:24px 0 0}
+.recap h3{font-size:1.4rem;margin-bottom:10px}
+.recap ul{list-style:none;margin:0 0 14px;padding:0}
+.recap li{padding:7px 0;border-bottom:1px solid rgba(255,255,255,.18);display:flex;justify-content:space-between;gap:12px}
+.recap li:last-child{border:0}
+.tot{font-size:1.3rem;font-weight:700;display:flex;justify-content:space-between;margin-bottom:16px}
+.err{color:#ffb4b4;min-height:1.4em;margin:0 0 8px;font-size:.95rem}
+footer{text-align:center;color:var(--mute);padding:36px 20px 48px;font-size:.9rem}
+</style>
+</head>
+<body>
+<nav class="top" aria-label="Navigation"><div class="wrap"><a class="logo" href="#">🎁 Daily Box</a><div class="links"><a href="#produits">Produit VIP</a><a href="#surprises">Surprises</a><a href="#message">Message</a><a href="#livraison">Livraison</a></div><a class="cart" href="#livraison" id="navTotal">Ma box</a></div></nav>
+<header class="hero">
+  <svg class="art" viewBox="0 0 300 300" aria-hidden="true"><defs><linearGradient id="gb" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f4c6d7"/><stop offset="1" stop-color="#d9648f"/></linearGradient></defs><rect x="50" y="130" width="200" height="140" rx="14" fill="url(#gb)"/><rect x="38" y="100" width="224" height="42" rx="12" fill="#f08bb0"/><rect x="136" y="100" width="28" height="170" fill="#c8a24a"/><path d="M150 100C110 40 60 70 100 100Z" fill="#e0b85c"/><path d="M150 100C190 40 240 70 200 100Z" fill="#e0b85c"/><circle cx="150" cy="98" r="14" fill="#c8a24a"/><path d="M255 40l6 14 14 6-14 6-6 14-6-14-14-6 14-6z" fill="#fff" opacity=".9"/><path d="M45 70l4 9 9 4-9 4-4 9-4-9-9-4 9-4z" fill="#fff" opacity=".7"/></svg>
+  <div class="wrap">
+    <h1>La box qui fait plaisir à tous.</h1>
+    <p>Choisissez votre produit VIP. Ajoutez un cadeau surprise et une surprise pour les enfants, avec votre message personnel. Commande simple par WhatsApp.</p>
+    <a class="btn" href="#produits">Composer ma box</a>
+  </div>
+</header>
+<div class="strip"><div class="wrap"><span>🚚 Livraison rapide</span><span>💵 Paiement à la livraison</span><span>💌 Message personnalisé</span><span>💰 Total calculé en direct</span></div></div>
+
+<main class="wrap">
+  <section id="produits">
+    <h2>1. Choisissez votre produit VIP</h2>
+    <p class="sub">C’est le cœur de la box. Touchez un produit pour le sélectionner.</p>
+    <div class="grid" id="grid"></div>
+    </section>
+
+  <section id="surprises">
+    <h2>2. Nos surprises, choisies par nous</h2>
+    <p class="sub">Touchez une surprise pour l’ajouter à votre box. Nous choisissons le contenu pour vous.</p>
+    <div class="surprise">
+      <button type="button" class="sbox" id="sg" aria-pressed="false"><div class="em">🎁</div><b>Cadeau surprise</b><span>Une belle attention choisie par notre équipe.</span><strong class="tag" id="giftPrice"></strong></button>
+      <button type="button" class="sbox" id="sk" aria-pressed="false"><div class="em">🧸</div><b>Surprise enfant</b><span>Un petit plaisir pour les enfants, choisi par nous.</span><strong class="tag" id="kidPrice"></strong></button>
+    </div>
+  </section>
+
+  <section id="message">
+    <h2>3. Votre message personnalisé</h2>
+    <p class="sub">Il sera glissé dans la box avec le cadeau.</p>
+    <div class="form">
+      <div class="row">
+        <label>Pour qui ?<input id="to" placeholder="Ex : Salma" autocomplete="off"></label>
+        <label>De la part de<input id="from" placeholder="Ex : Youssef" autocomplete="off"></label>
+      </div>
+      <label>Occasion
+        <select id="occ">
+          <option>Anniversaire</option><option>Mariage</option><option>Naissance</option><option>Aïd</option><option>Remerciement</option><option>Juste pour faire plaisir</option>
+        </select>
+      </label>
+      <label>Votre message<textarea id="msg" placeholder="Écrivez votre message ici…"></textarea></label>
+      <button class="link" type="button" id="suggest">Écris-moi une idée de message</button>
+    </div>
+  </section>
+
+  <section id="livraison">
+    <h2>4. Livraison</h2>
+    <p class="sub">Pour que nous puissions vous livrer la box.</p>
+    <div class="form">
+      <div class="row">
+        <label>Votre nom<input id="name" autocomplete="name"></label>
+        <label>Téléphone<input id="tel" type="tel" autocomplete="tel" placeholder="06 00 00 00 00"></label>
+      </div>
+      <div class="row">
+        <label>Ville<input id="city" autocomplete="address-level2"></label>
+        <label>Adresse<input id="addr" autocomplete="street-address"></label>
+      </div>
+    </div>
+
+    <div class="recap">
+      <h3>Votre box</h3>
+      <ul id="recap"></ul>
+      <div class="tot"><span>Total</span><span id="total">—</span></div>
+      <p class="err" id="err" role="alert"></p>
+      <button class="btn wa" id="send" type="button">Commander sur WhatsApp</button>
+    </div>
+  </section>
+</main>
+<footer>Daily Box · Paiement à la livraison · Réponse rapide sur WhatsApp</footer>
+
+<script>
+// ====== À MODIFIER ======
+// Photos : ajoutez img:"photo.jpg" dans un produit (le site doit être hébergé avec les photos).
+const WA_NUMBER = "212612463172";   // votre numéro, format international sans + ni espaces
+const CURRENCY = "DH";
+const GIFT_PRICE = 400;
+const KID_PRICE = 200;                  // prix des surprises (à modifier)
+const PRODUCTS = [
+  {id:1,name:"Coffret parfum",desc:"Parfum et miniatures",price:350,em:"🌸"},
+  {id:2,name:"Chocolats premium",desc:"Assortiment artisanal",price:180,em:"🍫"},
+  {id:3,name:"Bougies de luxe",desc:"Trois senteurs",price:220,em:"🕯️"},
+  {id:4,name:"Montre élégante",desc:"Boîte cadeau incluse",price:480,em:"⌚"},
+  {id:5,name:"Dattes & thé",desc:"Sélection du terroir",price:150,em:"🫖"},
+  {id:6,name:"Bouquet éternel",desc:"Roses stabilisées",price:290,em:"💐"}
+];
+// ========================
+const $ = id => document.getElementById(id);
+let sel = null;
+const GR=["linear-gradient(135deg,#f9d1e0,#e98bb0)","linear-gradient(135deg,#e9c9a3,#a56a3c)","linear-gradient(135deg,#fbe3a3,#e0a53c)","linear-gradient(135deg,#cfd8f5,#6f86d6)","linear-gradient(135deg,#d7ecd0,#6fb27a)","linear-gradient(135deg,#f7cdd4,#d4577a)"];
+const fmt = n => n + " " + CURRENCY;
+
+const state = {v:null,g:null,k:null};
+function build(el,list,key){
+list.forEach((p,i)=>{
+  const b = document.createElement("button");
+  b.type="button"; b.className="prod"; b.setAttribute("aria-pressed","false");
+  b.innerHTML = `<div class="pic" style="--g:${GR[i%GR.length]}">${p.img?`<img src="${p.img}" alt="${p.name}">`:`<span>${p.em}</span>`}</div><b>${p.name}</b><small>${p.desc}</small><span class="price">${fmt(p.price)}</span>`;
+  b.onclick = ()=>{ state[key] = state[key]===p ? null : p; [...el.children].forEach(c=>c.setAttribute("aria-pressed", String(c===b && state[key]===p))); render(); };
+  el.appendChild(b);
+});}
+build($("grid"),PRODUCTS,"v");
+[["sg","g"],["sk","k"]].forEach(([id,k])=>{ $(id).onclick = ()=>{ state[k] = !state[k]; $(id).setAttribute("aria-pressed", String(state[k])); render(); }; });
+
+const total = () => (state.v ? state.v.price : 0) + (state.g ? GIFT_PRICE : 0) + (state.k ? KID_PRICE : 0);
+function render(){
+  const p = state.v;
+  $("recap").innerHTML = `<li><span>${p ? p.em+" "+p.name : "Produit VIP : non choisi"}</span><span>${p ? fmt(p.price) : ""}</span></li>${state.g ? `<li><span>🎁 Cadeau surprise</span><span>${fmt(GIFT_PRICE)}</span></li>` : ""}${state.k ? `<li><span>🧸 Surprise enfant</span><span>${fmt(KID_PRICE)}</span></li>` : ""}`;
+  $("total").textContent = fmt(total());
+  $("giftPrice").textContent = fmt(GIFT_PRICE);
+  $("kidPrice").textContent = fmt(KID_PRICE);
+  $("navTotal").textContent = total() ? "Ma box · " + fmt(total()) : "Ma box";
+}
+render();
+
+const ideas = {
+  "Anniversaire":"Joyeux anniversaire ! Que cette nouvelle année t’apporte santé, bonheur et plein de belles surprises.",
+  "Mariage":"Tous nos vœux de bonheur pour cette nouvelle vie à deux. Que votre amour grandisse chaque jour.",
+  "Naissance":"Félicitations pour ce merveilleux bébé ! Beaucoup de joie et de tendresse à toute la famille.",
+  "Aïd":"Aïd Mubarak Saïd ! Que Dieu accepte nos prières et comble votre foyer de paix.",
+  "Remerciement":"Merci du fond du cœur. Ce petit cadeau est bien peu pour tout ce que tu fais.",
+  "Juste pour faire plaisir":"Une petite attention, juste parce que tu le mérites. Pense à toi aujourd’hui."
+};
+$("suggest").onclick = ()=>{
+  const to = $("to").value.trim();
+  $("msg").value = (to ? to + ", " : "") + ideas[$("occ").value];
+};
+
+$("send").onclick = ()=>{
+  const miss = [];
+  if(!state.v) miss.push("un produit VIP");
+  if(!$("to").value.trim()) miss.push("le destinataire");
+  if(!$("msg").value.trim()) miss.push("votre message");
+  if(!$("name").value.trim()) miss.push("votre nom");
+  if(!$("tel").value.trim()) miss.push("votre téléphone");
+  if(!$("city").value.trim()) miss.push("la ville");
+  if(miss.length){ $("err").textContent = "Il manque : " + miss.join(", ") + "."; return; }
+  $("err").textContent = "";
+  const t = [
+    "Bonjour, je veux commander une *Daily Box Surprise VIP* :",
+    "",
+    "• Produit VIP : " + state.v.name + " (" + fmt(state.v.price) + ")",
+    "• Cadeau surprise : " + (state.g ? "oui (" + fmt(GIFT_PRICE) + ")" : "non"),
+    "• Surprise enfant : " + (state.k ? "oui (" + fmt(KID_PRICE) + ")" : "non"),
+    "• Total : " + fmt(total()),
+    "",
+    "*Message personnalisé*",
+    "Pour : " + $("to").value.trim(),
+    "De la part de : " + ($("from").value.trim() || $("name").value.trim()),
+    "Occasion : " + $("occ").value,
+    "Message : " + $("msg").value.trim(),
+    "",
+    "*Livraison*",
+    "Nom : " + $("name").value.trim(),
+    "Tél : " + $("tel").value.trim(),
+    "Ville : " + $("city").value.trim(),
+    "Adresse : " + ($("addr").value.trim() || "-")
+  ].join("\n");
+  window.open("https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(t), "_blank");
+};
+</script>
+</body>
+</html>
